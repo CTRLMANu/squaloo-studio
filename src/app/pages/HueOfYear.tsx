@@ -118,29 +118,6 @@ export default function HueOfYear() {
         </div>
       </section>
 
-      {/* App Preview Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative flex justify-center"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl" />
-            <div className="relative max-w-xs mx-auto">
-              <div className="w-full h-[600px] rounded-3xl shadow-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md flex items-center justify-center">
-                <div className="text-center">
-                  <Calendar className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                  <p className="text-white/50">App Screenshot</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* How It Works Section */}
       <section className="py-20 px-6 bg-white/[0.02]">
         <div className="max-w-5xl mx-auto">
