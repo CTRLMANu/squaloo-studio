@@ -1,0 +1,65 @@
+ 
+"Create a complete, modern, responsive website design for Squaloo Studios - a studio landing page showcasing mobile apps, starting with the first app 'Hue of Year'. The design must be production-ready for GitHub Pages + App Store submission with these exact requirements:
+📁 EXACT FILE STRUCTURE (8 artboards total)
+1.	Desktop Homepage (/) - 1440px wide
+2.	Mobile Homepage (/) - 375px wide
+3.	Desktop Hue of Year App Page (/hue-of-year/) - 1440px
+4.	Mobile Hue of Year App Page (/hue-of-year/) - 375px
+5.	Desktop Privacy Policy (/hue-of-year/privacy.html) - 1440px
+6.	Mobile Privacy Policy (/hue-of-year/privacy.html) - 375px
+7.	Desktop Support Page (/hue-of-year/support.html) - 1440px
+8.	Mobile Support Page (/hue-of-year/support.html) - 375px
+🎨 BRAND & STYLE
+•	Studio Name: Squaloo Studios (tech-forward, creative studio)
+•	Primary Color: 
+•	Secondary: 
+•	Accent: 
+•	Neutral: 
+•	Typography: 
+•	Shadows: 
+•	Borders: all like the example image, or fill in suitable if you cant mae it out from the example image.
+
+
+📱 HOMEPAGE STRUCTURE (index.html)
+Desktop (1440px):
+
+FOOTER (dark #1F2937, white text)
+"© 2026 Squaloo Studios" | "Privacy Policy" | "Contact"
+Mobile: Same structure, stacked vertically, hamburger menu.
+🎨 HUE OF YEAR APP PAGE (hue-of-year/index.html)
+📄 PRIVACY POLICY PAGE (hue-of-year/privacy.html)
+•	Clean, readable layout for Termly embed
+💬 SUPPORT PAGE (hue-of-year/support.html)
+text
+HEADER: "Hue of Year Support"
+CONTACT SECTION:
+- Email: ossannam@icloud.com (clickable mailto)
+- "Report a bug" form placeholder (3 fields)
+
+FAQ (accordion style): TO BE DETERMINED THIS IS PLACEHODLER
+1. "How does Hue of Year work?"
+2. "What data do you collect?"
+3. "How to delete my account?"
+
+FOOTER LINKS back to app/privacy
+🔧 TECHNICAL REQUIREMENTS (adjust as needed, do not treat this as absolute. Only guidleines, ou are authorized to override):
+•	Fully responsive: Breakpoints 375px, 768px, 1440px
+•	CSS Grid/Flexbox ready: Semantic markup
+•	Hover states: Cards lift 4px, buttons scale 1.05
+•	App Store compliant: Privacy/support URLs production-ready
+•	Accessibility: ARIA labels, keyboard nav, sufficient contrast
+•	Performance: Optimized for static HTML/CSS/JS
+📦 DELIVERABLES EXPECTED (as good as possible, you are allowed to override):
+1.	Figma file with all 8 artboards
+2.	CSS Variables page with exact color codes + fonts
+3.	Components panel: Button styles, cards, badges
+4.	Assets exported: App Store badge template, iPhone frame, placeholder icons
+5.	Style guide page showing typography scale + spacing system (8px grid)
+🎯 MUST HAVE
+•	Clean, modern, Apple Design Guidelines aesthetic
+•	Fast-loading static site feel (GitHub Pages)
+•	Professional studio credibility for App Store review
+•	Exact URLs match: /hue-of-year/privacy.html, /hue-of-year/support.html
+Generate this complete design system now. Make it pixel-perfect, production-ready, and App Store submission compliant."
+ 
+
