@@ -155,12 +155,12 @@ export default function Home() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-2xl" />
                   <div className="relative flex justify-center">
-                    <div className="w-full max-w-xs h-[600px] rounded-3xl shadow-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md flex items-center justify-center">
-                      <div className="text-center">
-                        <Smartphone className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                        <p className="text-white/50">App Screenshot</p>
-                      </div>
-                    </div>
+                    <img
+  src="/images/hue-of-year-screenshot.png"
+  alt="Hue of Year App Screenshot"
+  className="w-full max-w-xs rounded-3xl shadow-2xl border border-white/10"
+/>
+
                   </div>
                 </div>
               </div>
