@@ -134,34 +134,21 @@ export default function Home() {
               to="/hue-of-year"
               className="group block bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/10 hover:border-white/20 transition-all"
             >
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-purple-500/20 rounded-full px-4 py-2 mb-6">
-                    <Palette className="w-4 h-4 text-purple-400" />
-                    <span className="text-sm text-purple-300">Color Experience</span>
-                  </div>
-                  <h3 className="text-3xl md:text-4xl mb-4">
-                    Hue of Year
-                  </h3>
-                  <p className="text-white/70 text-lg mb-6">
-                    A daily reflection app that transforms your mood, energy, and wins into a beautiful 
-                    color-coded calendar. Each day becomes a color—365 days create your year's emotional landscape.
-                  </p>
-                  <div className="flex items-center gap-2 text-purple-400 group-hover:gap-4 transition-all">
-                    <span>Learn More</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </div>
+              <div className="max-w-2xl mx-auto">
+                <div className="inline-flex items-center gap-2 bg-purple-500/20 rounded-full px-4 py-2 mb-6">
+                  <Palette className="w-4 h-4 text-purple-400" />
+                  <span className="text-sm text-purple-300">Color Experience</span>
                 </div>
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-2xl" />
-                  <div className="relative flex justify-center">
-                    <img
-  src="/images/hue-of-year-screenshot.png"
-  alt="Hue of Year App Screenshot"
-  className="w-full max-w-xs rounded-3xl shadow-2xl border border-white/10"
-/>
-
-                  </div>
+                <h3 className="text-3xl md:text-4xl mb-4">
+                  Hue of Year
+                </h3>
+                <p className="text-white/70 text-lg mb-6">
+                  A daily reflection app that transforms your mood, energy, and wins into a beautiful 
+                  color-coded calendar. Each day becomes a color—365 days create your year's emotional landscape.
+                </p>
+                <div className="flex items-center gap-2 text-purple-400 group-hover:gap-4 transition-all">
+                  <span>Learn More</span>
+                  <ArrowRight className="w-5 h-5" />
                 </div>
               </div>
             </Link>
