@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import homeScreenshot from 'figma:asset/1f3a9119293eb29b8fdf51d9cf011db625e02cbd.png';
 
 export default function Home() {
   return (
@@ -156,11 +155,12 @@ export default function Home() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-2xl" />
                   <div className="relative flex justify-center">
-                    <img 
-                      src={homeScreenshot}
-                      alt="Hue of Year App Preview"
-                      className="w-full max-w-xs rounded-3xl shadow-2xl border border-white/10"
-                    />
+                    <div className="w-full max-w-xs h-[600px] rounded-3xl shadow-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md flex items-center justify-center">
+                      <div className="text-center">
+                        <Smartphone className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                        <p className="text-white/50">App Screenshot</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

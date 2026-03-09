@@ -3,8 +3,6 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import calendarScreenshot from 'figma:asset/0e458ce7b86a57fbbb35f224f385490921d76ef2.png';
-import homeScreenshot from 'figma:asset/1f3a9119293eb29b8fdf51d9cf011db625e02cbd.png';
 
 export default function HueOfYear() {
   const features = [
@@ -132,11 +130,12 @@ export default function HueOfYear() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl" />
             <div className="relative max-w-xs mx-auto">
-              <img 
-                src={calendarScreenshot}
-                alt="Hue of Year Calendar View"
-                className="w-full rounded-3xl shadow-2xl border border-white/10"
-              />
+              <div className="w-full h-[600px] rounded-3xl shadow-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-md flex items-center justify-center">
+                <div className="text-center">
+                  <Calendar className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                  <p className="text-white/50">App Screenshot</p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
