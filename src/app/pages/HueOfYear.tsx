@@ -104,10 +104,16 @@ export default function HueOfYear() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex items-center justify-center gap-4 flex-wrap"
           >
-            <button className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full transition-all">
-              <Download className="w-5 h-5" />
-              <span>Download on App Store</span>
-            </button>
+            <a
+  href="https://apps.apple.com/app/hue-of-year-mood-tracker/id6759992055"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full transition-all"
+>
+  <Download className="w-5 h-5" />
+  <span>Download on App Store</span>
+</a>
+
             <Link
               to="/hue-of-year/support"
               className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-8 py-4 rounded-full border border-white/20 transition-all"
@@ -238,10 +244,16 @@ export default function HueOfYear() {
                 Download Hue of Year and begin transforming daily reflections into meaningful patterns
               </p>
               <div className="flex items-center justify-center gap-4 flex-wrap">
-                <button className="flex items-center gap-2 bg-white text-black hover:bg-white/90 px-8 py-4 rounded-full transition-all">
-                  <Download className="w-5 h-5" />
-                  <span>Download Now</span>
-                </button>
+                <a
+  href="https://apps.apple.com/app/hue-of-year-mood-tracker/id6759992055"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-2 bg-white text-black hover:bg-white/90 px-8 py-4 rounded-full transition-all"
+>
+  <Download className="w-5 h-5" />
+  <span>Download Now</span>
+</a>
+
                 <Link
                   to="/hue-of-year/support"
                   className="flex items-center gap-2 text-white hover:text-white/80 transition-colors"
