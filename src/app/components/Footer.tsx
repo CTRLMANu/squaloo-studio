@@ -12,6 +12,9 @@ export function Footer() {
             <Link to="/hue-of-year/privacy" className="text-sm text-white/70 hover:text-white transition-colors">
               Privacy Policy
             </Link>
+            <Link to="/hue-of-year/terms" className="text-sm text-white/70 hover:text-white transition-colors">
+              Terms of Service
+            </Link>
             <a href="mailto:ossannam@icloud.com" className="text-sm text-white/70 hover:text-white transition-colors">
               Contact
             </a>
