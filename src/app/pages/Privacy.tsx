@@ -25,7 +25,7 @@ export default function Privacy() {
             </span>
           </h1>
           <p className="text-xl text-white/70">
-            Last updated: March 08, 2026
+            Last updated: April 17, 2026
           </p>
         </motion.div>
       </section>
@@ -76,7 +76,7 @@ export default function Privacy() {
                 
                 <p><strong className="text-white">What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.</p>
                 
-                <p><strong className="text-white">How do you exercise your rights?</strong> The easiest way to exercise your rights is by submitting a data subject access request, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.</p>
+                <p><strong className="text-white">How do you exercise your rights?</strong> The easiest way to exercise your rights is by visiting <a href="https://squaloo.studio/#/hue-of-year/support" className="text-purple-400 hover:text-purple-300 transition-colors">https://squaloo.studio/#/hue-of-year/support</a>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.</p>
                 
                 <p>Want to learn more about what we do with any information we collect? Review the Privacy Notice in full.</p>
               </div>
@@ -95,6 +95,7 @@ export default function Privacy() {
                 <li>WHAT ARE YOUR PRIVACY RIGHTS?</li>
                 <li>CONTROLS FOR DO-NOT-TRACK FEATURES</li>
                 <li>DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</li>
+                <li>PAYMENT HANDLING</li>
                 <li>DO WE MAKE UPDATES TO THIS NOTICE?</li>
                 <li>HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</li>
                 <li>HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</li>
@@ -114,6 +115,14 @@ export default function Privacy() {
               
               <p className="text-white/70 leading-relaxed mb-4">
                 <strong className="text-white">Sensitive Information.</strong> We do not process sensitive information.
+              </p>
+
+              <p className="text-white/70 leading-relaxed mb-4">
+                <strong className="text-white">Payment Data.</strong> We do not collect, store, or have access to your credit card number, bank account details, security code, or any other direct payment information. In-app purchases and subscription payments are processed entirely by Apple (App Store / IAP). You may find their privacy notice here: <a href="https://www.apple.com/legal/privacy/data/en/app-store/" className="text-purple-400 hover:text-purple-300 transition-colors">https://www.apple.com/legal/privacy/data/en/app-store/</a>.
+              </p>
+
+              <p className="text-white/70 leading-relaxed mb-4">
+                All in-app payments are processed by Apple through the App Store. Your payment information is handled by Apple in accordance with its privacy policy.
               </p>
               
               <p className="text-white/70 leading-relaxed mb-4">
@@ -416,7 +425,7 @@ export default function Privacy() {
               
               <h3 className="text-xl mb-3 text-white">How to Exercise Your Rights</h3>
               <p className="text-white/70 leading-relaxed mb-4">
-                To exercise these rights, you can contact us by submitting a data subject access request, by emailing us at <a href="mailto:ossannam@icloud.com" className="text-purple-400 hover:text-purple-300 transition-colors">ossannam@icloud.com</a>, by visiting <a href="https://squaloo.studio/hue-of-year/support" className="text-purple-400 hover:text-purple-300 transition-colors">https://squaloo.studio/hue-of-year/support</a>, or by referring to the contact details at the bottom of this document.
+                To exercise these rights, you can contact us by visiting <a href="https://squaloo.studio/#/hue-of-year/support" className="text-purple-400 hover:text-purple-300 transition-colors">https://squaloo.studio/#/hue-of-year/support</a>, by emailing us at <a href="mailto:ossannam@icloud.com" className="text-purple-400 hover:text-purple-300 transition-colors">ossannam@icloud.com</a>, or by referring to the contact details at the bottom of this document.
               </p>
               
               <p className="text-white/70 leading-relaxed mb-6">
@@ -435,7 +444,21 @@ export default function Privacy() {
 
             {/* Section 10 */}
             <div>
-              <h2 className="text-2xl md:text-3xl mb-4 text-white">10. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
+              <h2 className="text-2xl md:text-3xl mb-4 text-white">10. PAYMENT HANDLING</h2>
+              <p className="text-white/70 leading-relaxed">
+                In-app purchases and subscription payments in this app are processed entirely by Apple through the App Store. We do not collect, store, or have access to your credit card number, bank account details, or any other direct payment information. All payment-related processing and security are handled by Apple in accordance with its own systems and policies.
+                <br />
+                <br />
+                We use RevenueCat to manage subscription status, validate in-app purchase receipts, restore purchases, and determine which features or content you are entitled to access in the app. RevenueCat processes purchase and subscription-status data on our behalf to validate receipts, restore purchases, manage entitlements, and support subscription-related analytics and reporting.
+                <br />
+                <br />
+                RevenueCat operates as a third-party service provider to us. You can read more about how RevenueCat processes data in its privacy policy: <a href="https://www.revenuecat.com/privacy" className="text-purple-400 hover:text-purple-300 transition-colors">https://www.revenuecat.com/privacy</a>. Payment-related privacy information about Apple's systems is available in Apple's Privacy Policy: <a href="https://www.apple.com/legal/privacy/data/en/app-store/" className="text-purple-400 hover:text-purple-300 transition-colors">https://www.apple.com/legal/privacy/data/en/app-store/</a>.
+              </p>
+            </div>
+
+            {/* Section 11 */}
+            <div>
+              <h2 className="text-2xl md:text-3xl mb-4 text-white">11. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
               <p className="text-white/70 mb-4"><em>In Short: Yes, we will update this notice as necessary to stay compliant with relevant laws.</em></p>
               
               <p className="text-white/70 leading-relaxed">
@@ -443,9 +466,9 @@ export default function Privacy() {
               </p>
             </div>
 
-            {/* Section 11 */}
+            {/* Section 12 */}
             <div>
-              <h2 className="text-2xl md:text-3xl mb-4 text-white">11. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
+              <h2 className="text-2xl md:text-3xl mb-4 text-white">12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
               <p className="text-white/70 leading-relaxed mb-4">
                 If you have questions or comments about this notice, you may email us at <a href="mailto:ossannam@icloud.com" className="text-purple-400 hover:text-purple-300 transition-colors">ossannam@icloud.com</a> or contact us by post at:
               </p>
@@ -458,11 +481,11 @@ export default function Privacy() {
               </div>
             </div>
 
-            {/* Section 12 */}
+            {/* Section 13 */}
             <div>
-              <h2 className="text-2xl md:text-3xl mb-4 text-white">12. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
+              <h2 className="text-2xl md:text-3xl mb-4 text-white">13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
               <p className="text-white/70 leading-relaxed">
-                Based on the applicable laws of your country or state of residence in the US, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law.
+                Based on the applicable laws of your country or state of residence in the US, you may have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. To request to review, update, or delete your personal information, please visit <a href="https://squaloo.studio/#/hue-of-year/support" className="text-purple-400 hover:text-purple-300 transition-colors">https://squaloo.studio/#/hue-of-year/support</a>.
               </p>
             </div>
 
