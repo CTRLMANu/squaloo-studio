@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T02:10:00Z",
+  "title": "Design System: Manuel Ossanna",
+  "extensions": {
+    "colorMeta": {
+      "cover-yellow": { "role": "primary", "displayName": "Almanac Cover Yellow", "canonical": "#f3c019", "tonalRamp": ["#3a2c00", "#5e4800", "#836600", "#a98400", "#cfa300", "#f3c019", "#f8d76a", "#fcecb8"] },
+      "ink": { "role": "neutral", "displayName": "Press Black", "canonical": "#16140f", "tonalRamp": ["#0b0a07", "#16140f", "#2e2b24", "#4a463d", "#6b665b", "#918c80", "#bdb9af", "#e8e6e0"] },
+      "paper": { "role": "neutral", "displayName": "Uncoated White", "canonical": "#fffffb", "tonalRamp": ["#3d3d38", "#5f5f58", "#83837b", "#a8a8a0", "#cbcbc3", "#e6e6de", "#f6f6ef", "#fffffb"] },
+      "ink-faint": { "role": "neutral", "displayName": "Light Impression", "canonical": "rgb(22 20 15 / 0.68)", "tonalRamp": [] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Cover lettering only: the stacked name, as large as the cover allows (35vw below 60rem)." },
+      "headline": { "displayName": "Headline", "purpose": "Entry titles on interior pages, uppercase; step-4 below 60rem." },
+      "headline-small": { "displayName": "Headline small", "purpose": "'No. 01' entry numerals and the compiler's note heading." },
+      "title-display": { "displayName": "Title display", "purpose": "The 'Contents' heading and the compiler's signature." },
+      "title": { "displayName": "Title", "purpose": "Entry names in the contents table; the tagline at weight 500." },
+      "lede": { "displayName": "Lede", "purpose": "Entry opening paragraph and compiler's note body, max 36-38ch." },
+      "body": { "displayName": "Body", "purpose": "Running text, fact values, table cells." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked caps: running head, nav, numbering, row heads, captions, stamps, primary action." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All state transitions and the leader draw." },
+      { "name": "contents-dim", "value": "color 260ms ease-out", "purpose": "Non-focused contents rows drop to ink-faint." },
+      { "name": "leader-draw", "value": "clip-path inset(0 100% 0 0) -> inset(0) 520ms ease-out", "purpose": "Focused contents row redraws its dot leader left to right." },
+      { "name": "button-fill", "value": "background-color, color 200ms ease-out", "purpose": "Primary action inverts to ink with yellow type." },
+      { "name": "halftone-register", "value": "1400ms, exponential ease-out (1 - 2^(-10t)), cell 4x -> 1x final", "purpose": "The portrait screen settles from coarse to fine on load; reduced motion draws the final state." }
+    ],
+    "breakpoints": [
+      { "name": "single-column", "value": "60rem" },
+      { "name": "narrow", "value": "34rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Boxed caps label on paper; inverts to ink with yellow type on hover and focus.",
+      "html": "<a class=\"ds-button\" href=\"#\">Get it on the App Store</a>",
+      "css": ".ds-button { display: inline-block; padding: 0.85rem 1.1rem 0.8rem; border: 2px solid var(--ink, #16140f); color: var(--ink, #16140f); background: var(--paper, #fffffb); font-family: 'Libre Franklin Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-button:hover, .ds-button:focus-visible { background: var(--ink, #16140f); color: var(--yellow, #f3c019); } .ds-button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }"
+    },
+    {
+      "name": "Status Stamps",
+      "kind": "chip",
+      "refersTo": "stamp-live",
+      "description": "Printed status marks: solid border is Live, dashed border is In progress. Never colour-coded.",
+      "html": "<span class=\"ds-stamp\">Live</span> <span class=\"ds-stamp ds-stamp-progress\">In progress</span>",
+      "css": ".ds-stamp { display: inline-block; padding: 0.42em 0.62em 0.36em; border: 2px solid currentColor; color: #16140f; font-family: 'Libre Franklin Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 0.8125rem; font-weight: 650; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; } .ds-stamp-progress { border-style: dashed; }"
+    },
+    {
+      "name": "Contents Table",
+      "kind": "custom",
+      "refersTo": "contents-row",
+      "description": "Numbered entries on yellow with dot leaders and stamps; the hovered or focused row stays in full ink, others print lighter, and its leader redraws.",
+      "html": "<div class=\"ds-contents\"><h2 class=\"ds-contents-h\">Contents</h2><ol><li><a href=\"#\"><span class=\"ds-no\">No. 01</span><span class=\"ds-title\">Hue of Year</span><span class=\"ds-leader\"></span><span class=\"ds-st\">Live</span><span class=\"ds-sum\">An evening mood diary for iPhone.</span></a></li><li><a href=\"#\"><span class=\"ds-no\">No. 02</span><span class=\"ds-title\">AI usage &rarr; CO<sub>2</sub></span><span class=\"ds-leader\"></span><span class=\"ds-st ds-st-p\">In progress</span><span class=\"ds-sum\">The footprint of your AI use, estimated as an honest range.</span></a></li></ol></div>",
+      "css": ".ds-contents { background: #f3c019; color: #16140f; padding: 1.5rem; font-family: 'Libre Franklin Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-contents-h { margin: 0 0 4px; position: relative; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-weight: 400; font-size: 2.75rem; line-height: 1; text-transform: uppercase; padding-bottom: 0.35rem; border-bottom: 3px solid currentColor; } .ds-contents-h::after { content: ''; position: absolute; inset-inline: 0; bottom: -7px; border-bottom: 1px solid currentColor; } .ds-contents ol { margin: 0; padding: 0; list-style: none; } .ds-contents li { border-bottom: 1px solid currentColor; } .ds-contents a { display: grid; grid-template-columns: 4.5rem auto 1fr auto; grid-template-areas: 'no title leader stamp' '. sum sum sum'; align-items: baseline; column-gap: 0.75rem; row-gap: 0.15rem; padding: 0.85rem 0 0.95rem; color: inherit; text-decoration: none; transition: color 260ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-no { grid-area: no; font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; font-variant-numeric: tabular-nums; } .ds-title { grid-area: title; font-size: 1.75rem; font-weight: 650; line-height: 1.1; letter-spacing: -0.015em; } .ds-title sub { font-size: 0.55em; } .ds-leader { grid-area: leader; align-self: center; height: 0; border-bottom: 2px dotted currentColor; translate: 0 0.35em; } .ds-st { grid-area: stamp; align-self: center; padding: 0.42em 0.62em 0.36em; border: 2px solid currentColor; font-size: 0.8125rem; font-weight: 650; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; } .ds-st-p { border-style: dashed; } .ds-sum { grid-area: sum; font-size: 0.8125rem; line-height: 1.5; max-width: 52ch; } .ds-contents ol:has(a:hover, a:focus-visible) a:not(:hover, :focus-visible) { color: rgb(22 20 15 / 0.68); } .ds-contents a:hover .ds-leader, .ds-contents a:focus-visible .ds-leader { animation: ds-draw 520ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-contents a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } @keyframes ds-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }"
+    },
+    {
+      "name": "Entry Head",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "'No. 01' numeral, uppercase League Gothic title and stamp, closed by the double rule underline.",
+      "html": "<header class=\"ds-entry-head\"><p class=\"ds-entry-no\">No. 01</p><h2>Hue of Year</h2><span class=\"ds-entry-st\">Live</span></header>",
+      "css": ".ds-entry-head { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: end; column-gap: 1.5rem; padding: 0 0 0.5rem; margin-bottom: 4px; border-bottom: 3px solid #16140f; background: #fffffb; color: #16140f; } .ds-entry-head::after { content: ''; position: absolute; inset-inline: 0; bottom: -7px; border-bottom: 1px solid #16140f; } .ds-entry-no { margin: 0; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-size: 4.25rem; line-height: 0.85; font-variant-numeric: tabular-nums; } .ds-entry-head h2 { margin: 0; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-weight: 400; font-size: 6rem; line-height: 0.85; text-transform: uppercase; letter-spacing: 0.005em; } .ds-entry-st { margin-bottom: 0.5rem; padding: 0.42em 0.62em 0.36em; border: 2px solid currentColor; font-family: 'Libre Franklin Variable', Arial, sans-serif; font-size: 0.8125rem; font-weight: 650; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Facts with Dot Leaders",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Definition rows: uppercase label with a dotted leader to its value, hairline between rows.",
+      "html": "<dl class=\"ds-facts\"><div><dt>Made for</dt><dd>iPhone, with home and lock screen widgets</dd></div><div><dt>Your data</dt><dd>Stays on your phone. No account, no servers.</dd></div></dl>",
+      "css": ".ds-facts { margin: 0; border-top: 1px solid #16140f; color: #16140f; background: #fffffb; font-family: 'Libre Franklin Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; line-height: 1.55; } .ds-facts div { display: grid; grid-template-columns: 10.5rem 1fr; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid #16140f; } .ds-facts dt { display: flex; align-items: baseline; gap: 0.4em; padding-top: 0.15em; font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; } .ds-facts dt::after { content: ''; flex: 1; min-width: 1rem; border-bottom: 2px dotted currentColor; } .ds-facts dd { margin: 0; }"
+    },
+    {
+      "name": "Plate",
+      "kind": "card",
+      "refersTo": "plate-frame",
+      "description": "Product imagery as numbered figures inside a 5px double frame, 'Fig. n' captions.",
+      "html": "<div class=\"ds-plates\"><figure><div class=\"ds-plate-img\"></div><figcaption><span>Fig. 1</span> The evening check-in.</figcaption></figure><figure><div class=\"ds-plate-img\"></div><figcaption><span>Fig. 2</span> Widgets on the home screen.</figcaption></figure></div>",
+      "css": ".ds-plates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; padding: 1.5rem; border: 5px double #16140f; background: #fffffb; color: #16140f; font-family: 'Libre Franklin Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-plates figure { margin: 0; } .ds-plate-img { aspect-ratio: 720 / 1417; outline: 1px solid #16140f; background: #fffffb; } .ds-plates figcaption { margin-top: 0.6rem; font-size: 0.8125rem; line-height: 1.45; } .ds-plates figcaption span { font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; margin-right: 0.3em; }"
+    },
+    {
+      "name": "Colophon",
+      "kind": "nav",
+      "refersTo": "colophon",
+      "description": "Solid ink block with yellow type, opened by the double rule; site-wide links in labelled columns.",
+      "html": "<footer class=\"ds-colophon\"><hr class=\"ds-double\" /><div class=\"ds-col-grid\"><nav><h2>Entries</h2><ul><li><a href=\"#\">No. 01 Hue of Year</a></li><li><a href=\"#\">No. 02 AI usage &rarr; CO&#8322;</a></li></ul></nav><div><h2>Write to me</h2><p><a href=\"#\">ossannam@icloud.com</a></p></div><div><h2>This site</h2><p><a href=\"#\">Privacy</a></p></div></div></footer>",
+      "css": ".ds-colophon { background: #16140f; color: #f3c019; padding: 3rem 1.5rem 4rem; font-family: 'Libre Franklin Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-double { height: 7px; margin: 0; border: 0; border-top: 3px solid currentColor; border-bottom: 1px solid currentColor; color: inherit; } .ds-col-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 3rem 1.5rem; margin-top: 1.5rem; } .ds-colophon h2 { margin: 0 0 0.75rem; font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; } .ds-colophon p, .ds-colophon ul { margin: 0; padding: 0; list-style: none; font-size: 0.8125rem; line-height: 1.6; font-variant-numeric: tabular-nums; } .ds-colophon a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.22em; } .ds-colophon a:hover { text-decoration-thickness: 2px; } .ds-colophon a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Almanac",
+    "overview": "The site is a printed almanac compiled by one person. It has a yellow front cover carrying his name and a halftone portrait, a contents table of numbered entries, interior pages with reference tables and framed plates, a yellow back cover for the compiler's note, and a black colophon. Everything is printed in two inks on two papers. Depth, tone and emphasis come from printing devices (rules, dot leaders, stamps, halftone screens), not from screen effects.\n\nDensity is that of a reference book: large condensed display lettering over quiet, well-set text, with tables and leaders doing the organising. The interface stays in the background. The person and the work carry the page. Motion is limited to two moments: the ink registering onto the cover, and one contents row coming to full ink.\n\nThe discarded prior look (black background, purple–pink gradients, blurred glow blobs, a generic \"Creative Mobile Apps\" hero) is a confirmed anti-reference.",
+    "keyCharacteristics": [
+      "Two inks, flat: black ink on cover yellow or interior white, and yellow type on a black colophon.",
+      "League Gothic set in uppercase for the lettering, Libre Franklin for everything that is read.",
+      "Double rules (thick over thin) open pages and sit under heading blocks.",
+      "Entries are numbered \"No. 01\", never dated.",
+      "Status is shown by the stamp itself: a solid box means live, a dashed box means in progress.",
+      "Every corner is square. There are no shadows, gradients or glows."
+    ],
+    "rules": [
+      { "name": "The Two Inks Rule", "body": "Every surface is yellow, white or black, and every mark is ink or (on black) yellow. The only colour outside these is inside a product's own screenshots.", "section": "colors" },
+      { "name": "The Printed Tone Rule", "body": "Tone is made the way a press makes it, with halftone dots or line weight, never with tint fills, gradients or glows. The one transparency in the system is Light Impression on dimmed contents rows.", "section": "colors" },
+      { "name": "The Selection Rule", "body": "Selected text inverts to yellow on ink. Inside the black colophon it inverts back to ink on yellow.", "section": "colors" },
+      { "name": "The Wood-Type Rule", "body": "League Gothic is used only in uppercase and weight 400, and only for names, entry titles, numerals and section heads. It is never used for sentences.", "section": "typography" },
+      { "name": "The Matched Stroke Rule", "body": "The → arrow in entry titles is set in Libre Franklin 800 at 0.72em so its stroke matches the display stems. Chemical subscripts (CO₂) use a real <sub> at 0.55em.", "section": "typography" },
+      { "name": "The Flat Press Rule", "body": "No box-shadow, no filter: drop-shadow, no blur. If something needs to stand apart, it gets a rule, a frame or a different paper.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do print everything in the two inks: ink on cover-yellow or paper, and cover-yellow on ink for the colophon.",
+      "Do open every page with the double rule (3px over 1px) and close every heading block with the double-rule underline.",
+      "Do number entries \"No. 01\", \"No. 02\" with tabular figures, and add a new project as one more contents row and one more entry.",
+      "Do mark status with a boxed stamp: solid for Live, dashed for In progress.",
+      "Do frame product imagery as plates in the 5px double frame with \"Fig. n\" captions.",
+      "Do use dot leaders to connect a label to its value.",
+      "Do keep all content visible by default. Motion only reveals, and prefers-reduced-motion shows the final state."
+    ],
+    "donts": [
+      "Don't use gradients, tint fills, glows, blurs or shadows. The discarded black-and-purple glow look is the anti-reference.",
+      "Don't round a corner.",
+      "Don't set League Gothic in lowercase, in bold or for sentences.",
+      "Don't show state with colour (no green \"live\" badge). The stamp's border style carries it.",
+      "Don't frame entries or the site with dates or years. Entries are numbered, not dated.",
+      "Don't put product colours (Hue of Year's green, amber, red) on the page outside the product's own screenshots."
+    ]
+  }
+}

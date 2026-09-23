@@ -1,0 +1,16 @@
+---
+import Document from '../../../layouts/Document.astro';
+import { hueDocs, hueBelongsTo } from '../../../data/hue-docs';
+// The policy text is kept exactly as published; it is not edited here.
+import body from '../../../content/hue-of-year/privacy.html?raw';
+---
+
+<Document
+  title="Privacy Policy"
+  description="Privacy Policy for Hue of Year, the evening mood diary for iPhone."
+  belongsTo={hueBelongsTo}
+  updated="April 17, 2026"
+  siblings={hueDocs}
+>
+  <Fragment set:html={body} />
+</Document>

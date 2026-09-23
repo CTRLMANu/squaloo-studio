@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.claude/settings.local.json
+.impeccable/config.local.json
+.impeccable/review/
+
+# Originals of personal photos stay on this machine; only the processed images ship.
+assets/source/portrait.png
+assets/source/portrait-mask.png
+
+# Impeccable's local decision-page logs
+.impeccable/questions/

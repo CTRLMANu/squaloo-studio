@@ -1,0 +1,102 @@
+---
+// A chapter opener on the cover yellow: entry number, title, status, lede and actions.
+// The `aside` slot holds the frontispiece (a plate); the default slot holds actions.
+import RunningHead from './RunningHead.astro';
+import type { Entry } from '../data/entries';
+
+interface Props {
+  entry: Entry;
+  lede: string;
+  links?: { href: string; text: string }[];
+  icon?: { src: string; alt: string };
+}
+
+const { entry, lede, links = [], icon } = Astro.props;
+const hasAside = Astro.slots.has('aside');
+---
+
+<header class="opener" data-aside={hasAside ? '' : undefined}>
+  <RunningHead label="An almanac of side projects" links={[{ href: '/#contents', text: 'Contents' }, ...links]} />
+
+  <div class="opener-body">
+    <div class="opener-text">
+      <div class="opener-mark">
+        {icon && <img class="icon" src={icon.src} alt={icon.alt} width="96" height="96" />}
+        <p class="no">No. {entry.no}</p>
+        <span class="stamp" data-state={entry.status === 'Live' ? 'live' : 'progress'}>{entry.status}</span>
+      </div>
+      <h1 set:html={entry.titleHtml} />
+      <p class="lede">{lede}</p>
+      <slot />
+    </div>
+    {hasAside && <div class="opener-aside"><slot name="aside" /></div>}
+  </div>
+</header>
+
+<style>
+  .opener {
+    background: var(--yellow);
+    padding: var(--space-m) var(--gutter) var(--space-xl);
+  }
+
+  .opener-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: var(--space-l);
+    margin-top: var(--space-xl);
+  }
+
+  .opener[data-aside] .opener-body {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+  }
+
+  .opener-mark {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    margin-bottom: var(--space-m);
+  }
+
+  .icon {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 22.5%;
+  }
+
+  .no {
+    font-family: var(--display);
+    font-size: var(--step-3);
+    line-height: 1;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(var(--step-4), 13vw, 12rem);
+    line-height: 0.82;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+  }
+
+  .lede {
+    max-width: 36ch;
+    margin: var(--space-m) 0;
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .opener-aside {
+    align-self: end;
+  }
+
+  @media (max-width: 60rem) {
+    .opener[data-aside] .opener-body {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: var(--space-l);
+    }
+
+    .opener-body {
+      margin-top: var(--space-l);
+    }
+  }
+</style>

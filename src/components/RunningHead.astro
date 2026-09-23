@@ -1,0 +1,48 @@
+---
+// The almanac's running head: a double rule, the book's title on the left, page links on the right.
+interface Props {
+  label: string;
+  links: { href: string; text: string }[];
+}
+const { label, links } = Astro.props;
+---
+
+<div class="running-head">
+  <hr class="double-rule" />
+  <div class="running-row">
+    <p>{label}</p>
+    <nav aria-label="Page">
+      {links.map((l) => <a href={l.href}>{l.text}</a>)}
+    </nav>
+  </div>
+</div>
+
+<style>
+  .running-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s) var(--space-m);
+    padding-top: 0.6rem;
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .running-row p a,
+  .running-row nav a {
+    text-decoration: none;
+  }
+
+  .running-row nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem var(--space-m);
+  }
+
+  .running-row a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import RunningHead from '../components/RunningHead.astro';
+---
+
+<Base title="Page not found" description="This page is not in the almanac.">
+  <main class="missing">
+    <RunningHead label="An almanac of side projects" links={[{ href: '/#contents', text: 'Contents' }]} />
+    <h1>Not in the almanac</h1>
+    <p>There is no page at this address. <a href="/#contents">Back to the contents</a>.</p>
+  </main>
+</Base>
+
+<style>
+  .missing {
+    min-height: 70svh;
+    padding: var(--space-m) var(--gutter) var(--space-xl);
+    background: var(--yellow);
+  }
+
+  h1 {
+    margin-top: var(--space-xl);
+    font-family: var(--display);
+    font-size: clamp(var(--step-4), 13vw, 12rem);
+    line-height: 0.82;
+    text-transform: uppercase;
+    max-width: 8ch;
+  }
+
+  p {
+    margin-top: var(--space-m);
+    font-size: var(--step-1);
+  }
+</style>

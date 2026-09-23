@@ -1,0 +1,111 @@
+---
+import '@fontsource/league-gothic/400.css';
+import '@fontsource-variable/libre-franklin/wght.css';
+import '../styles/global.css';
+import { SITE } from '../site';
+import { entries } from '../data/entries';
+
+interface Props {
+  title?: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} · ${SITE.author}` : SITE.author;
+const canonical = new URL(Astro.url.pathname, SITE.url);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#f3c019" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <script is:inline>
+      // The old site used hash routes (squaloo.studio/#/hue-of-year/support); send them to the real page.
+      if (location.hash.startsWith('#/')) location.replace(location.hash.slice(1).replace(/\/?$/, '/'));
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <footer class="colophon">
+      <hr class="double-rule" />
+      <div class="colophon-grid">
+        <nav aria-label="Entries">
+          <h2 class="label">Entries</h2>
+          <ul>
+            {
+              entries.map((e) => (
+                <li>
+                  <a href={`/${e.slug}/`}>
+                    No. {e.no} {e.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+        <div>
+          <h2 class="label">Colophon</h2>
+          <p>
+            Compiled by {SITE.author}. Set in League Gothic and Libre Franklin. The portrait is screened in one
+            ink, live in your browser. Built with Astro, hosted on GitHub Pages.
+          </p>
+        </div>
+        <div>
+          <h2 class="label">This site</h2>
+          <p><a href="/privacy/">Privacy</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .colophon {
+    background: var(--ink);
+    color: var(--yellow);
+    padding: var(--space-l) var(--gutter) var(--space-xl);
+  }
+
+  .colophon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: var(--space-l) var(--space-m);
+    margin-top: var(--space-m);
+    max-width: 100rem;
+  }
+
+  .colophon h2 {
+    margin-bottom: var(--space-s);
+  }
+
+  .colophon p {
+    max-width: 34ch;
+    font-size: var(--step--1);
+    line-height: 1.6;
+  }
+
+  .colophon ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--step--1);
+    line-height: 1.9;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .colophon ::selection {
+    background: var(--yellow);
+    color: var(--ink);
+  }
+</style>

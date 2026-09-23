@@ -1,0 +1,159 @@
+---
+// A printed document inside the almanac: legal pages, support, notes.
+import Base from './Base.astro';
+import RunningHead from '../components/RunningHead.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** What the document belongs to, shown in the running head. */
+  belongsTo: { text: string; href: string };
+  updated?: string;
+  /** Sibling documents, listed beside the text. */
+  siblings?: { href: string; text: string }[];
+}
+
+const { title, description, belongsTo, updated, siblings = [] } = Astro.props;
+const here = Astro.url.pathname;
+---
+
+<Base title={title} description={description}>
+  <div class="doc">
+    <RunningHead label={belongsTo.text} links={[{ href: '/', text: 'Contents' }, { href: belongsTo.href, text: 'Back to entry' }]} />
+
+    <header class="doc-head rule-under">
+      <h1>{title}</h1>
+      {updated && <p class="updated">Last updated {updated}</p>}
+    </header>
+
+    <div class="doc-grid">
+      {
+        siblings.length > 0 && (
+          <nav class="doc-nav" aria-label="Documents">
+            <ul>
+              {siblings.map((s) => (
+                <li>
+                  <a href={s.href} aria-current={s.href === here ? 'page' : undefined}>
+                    {s.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .doc {
+    padding: var(--space-m) var(--gutter) var(--space-xl);
+  }
+
+  .doc-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-s) var(--space-m);
+    margin-top: var(--space-xl);
+    padding-bottom: 0.5rem;
+  }
+
+  .doc-head h1 {
+    font-family: var(--display);
+    font-size: clamp(var(--step-4), 9vw, var(--step-5));
+    line-height: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+  }
+
+  .updated {
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .doc-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+    column-gap: var(--space-l);
+    margin-top: var(--space-l);
+  }
+
+  .doc-nav {
+    grid-column: 1;
+  }
+
+  .doc-nav ul {
+    position: sticky;
+    top: var(--space-m);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .doc-nav a {
+    display: block;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--ink);
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .doc-nav a[aria-current='page'] {
+    background: var(--ink);
+    color: var(--paper);
+    padding-inline: 0.6rem;
+  }
+
+  .doc-nav a:not([aria-current]):hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  .prose {
+    grid-column: 2;
+  }
+
+  @media (max-width: 60rem) {
+    .doc-grid {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: var(--space-l);
+    }
+
+    .doc-nav,
+    .prose {
+      grid-column: 1;
+    }
+
+    .doc-nav ul {
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 var(--space-m);
+      border-top: 0;
+    }
+
+    .doc-nav a {
+      border-bottom-width: 2px;
+      border-bottom-color: transparent;
+    }
+
+    .doc-nav a[aria-current='page'] {
+      background: none;
+      color: inherit;
+      padding-inline: 0;
+      border-bottom-color: var(--ink);
+    }
+  }
+</style>

@@ -1,0 +1,506 @@
+---
+import Base from '../layouts/Base.astro';
+import RunningHead from '../components/RunningHead.astro';
+import Co2Plan from '../components/Co2Plan.astro';
+import { SITE } from '../site';
+import { entries } from '../data/entries';
+
+const [hue, co2] = entries;
+---
+
+<Base description="Manuel Ossanna's side projects: Hue of Year, a mood diary for iPhone, and a tool that estimates the CO₂ footprint of your AI use.">
+  <header class="cover">
+    <RunningHead
+      label="An almanac of side projects"
+      links={[
+        { href: '#contents', text: 'Contents' },
+        { href: '#note', text: 'Note' },
+      ]}
+    />
+
+    <div class="cover-body">
+      <h1 class="name">
+        <span>Manuel</span>
+        <span>Ossanna</span>
+      </h1>
+
+      <p class="tagline">
+        {SITE.tagline} <span>{SITE.edition}</span>
+      </p>
+
+      <nav class="contents" id="contents" aria-labelledby="contents-title">
+        <h2 id="contents-title" class="rule-under">Contents</h2>
+        <ol>
+          {
+            entries.map((e) => (
+              <li>
+                <a href={`#no-${e.no}`}>
+                  <span class="no">No. {e.no}</span>
+                  <span class="title" set:html={e.titleHtml} />
+                  <span class="leader" aria-hidden="true" />
+                  <span class="stamp" data-state={e.status === 'Live' ? 'live' : 'progress'}>
+                    {e.status}
+                  </span>
+                  <span class="summary">{e.summary}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
+      <figure class="portrait" data-halftone data-tone="/img/portrait-tone.webp">
+        <canvas role="img" aria-label="Portrait of Manuel Ossanna, printed as a halftone"></canvas>
+        <noscript>
+          <img src="/img/portrait-halftone.webp" alt="Portrait of Manuel Ossanna, printed as a halftone" width="641" height="915" />
+        </noscript>
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <article class="entry" id={`no-${hue.no}`} aria-labelledby="hue-title">
+      <header class="entry-head rule-under">
+        <p class="entry-no">No. {hue.no}</p>
+        <h2 id="hue-title" set:html={hue.titleHtml} />
+        <span class="stamp" data-state="live">{hue.status}</span>
+      </header>
+
+      <div class="entry-body">
+        <p class="lede">
+          A diary for the end of the day. Each evening you log how it went, your energy and one small win. Every day
+          becomes a colour, and over months a year of moods takes shape on a single grid.
+        </p>
+
+        <dl class="facts">
+          <div><dt>Made for</dt><dd>iPhone, with home and lock screen widgets</dd></div>
+          <div><dt>Status</dt><dd>Live on the App Store</dd></div>
+          <div><dt>Your data</dt><dd>Your entries stay on your phone. No account needed.</dd></div>
+          <div><dt>Three views</dt><dd>Calendar, Prism for tomorrow's task, Echo for patterns</dd></div>
+        </dl>
+
+        <p class="actions">
+          <a class="button" href="https://apps.apple.com/app/hue-of-year-mood-tracker/id6759992055" rel="noopener">Get it on the App Store</a>
+          <a href={`/${hue.slug}/`}>Read the full entry</a>
+        </p>
+      </div>
+
+      <div class="plates">
+        <figure>
+          <img src="/img/hue-checkin.webp" alt="Hue of Year check-in screen asking “How was your day?” with green, amber and red choices" width="720" height="1417" loading="lazy" />
+          <figcaption><span>Fig. 1</span> The evening check-in. One tap sets the day's colour.</figcaption>
+        </figure>
+        <figure>
+          <img src="/img/hue-widgets.webp" alt="iPhone home screen with Hue of Year widgets showing April's colours, a 110-day streak and today's task" width="720" height="1471" loading="lazy" />
+          <figcaption><span>Fig. 2</span> Widgets keep the month and today's task on the home screen.</figcaption>
+        </figure>
+        <figure>
+          <img src="/img/hue-echo.webp" alt="Hue of Year Echo view with charts of mood and energy by weekday, mood stability and bounce-back pattern" width="720" height="1417" loading="lazy" />
+          <figcaption><span>Fig. 3</span> Echo looks back: mood by weekday, stability, how you recover.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="entry entry-progress" id={`no-${co2.no}`} aria-labelledby="co2-title">
+      <header class="entry-head rule-under">
+        <p class="entry-no">No. {co2.no}</p>
+        <h2 id="co2-title" set:html={co2.titleHtml} />
+        <span class="stamp" data-state="progress">{co2.status}</span>
+      </header>
+
+      <div class="entry-body">
+        <p class="lede">
+          I used about 1.3 billion tokens over July and part of August, and wanted to know what that costs in CO₂. So I'm
+          building a small, free tool that estimates it from the exports you can already download, without installing
+          anything.
+        </p>
+        <p class="actions"><a href={`/${co2.slug}/`}>Read the full entry</a></p>
+      </div>
+
+      <Co2Plan />
+    </article>
+
+    <section class="note" id="note" aria-labelledby="note-title">
+      <h2 id="note-title">A note from the compiler</h2>
+      <div class="note-body">
+        <p>
+          I'm Manuel. I build things on the side, partly as a creative outlet, partly because I need to be making
+          something. This is where they live: small, careful tools that show people something about themselves they'd
+          otherwise miss, like a year of moods or the footprint of their AI use.
+        </p>
+        <p>
+          That second one started with my own: 1.3 billion tokens over July and part of August. Two entries so far.
+          More as they ship.
+        </p>
+        <p class="signature">{SITE.author}</p>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<script>
+  import '../scripts/halftone';
+</script>
+
+<style>
+  /* ---------- Cover ---------- */
+  .cover {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: var(--space-m) var(--gutter) 0;
+    overflow: hidden;
+  }
+
+  .cover-body {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      'name portrait'
+      'tagline portrait'
+      'contents portrait';
+    column-gap: var(--space-l);
+    padding-top: clamp(1.5rem, 4svh, 3rem);
+  }
+
+  .name {
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--display);
+    font-size: min(19vw, 31svh);
+    line-height: 0.8;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    /* optical: pull the cap height flush with the rule above */
+    margin-top: -0.04em;
+  }
+
+  .tagline {
+    grid-area: tagline;
+    margin-top: clamp(1rem, 3svh, 2rem);
+    font-size: var(--step-2);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .tagline span {
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  /* ---------- Contents ---------- */
+  .contents {
+    grid-area: contents;
+    position: relative;
+    z-index: 1;
+    align-self: end;
+    padding: var(--space-l) 0 var(--space-l);
+  }
+
+  .contents h2 {
+    font-family: var(--display);
+    font-size: var(--step-3);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    padding-bottom: 0.35rem;
+  }
+
+  .contents ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contents li {
+    border-bottom: 1px solid currentColor;
+  }
+
+  .contents a {
+    display: grid;
+    grid-template-columns: 4.5rem auto 1fr auto;
+    grid-template-areas:
+      'no title leader stamp'
+      '. summary summary summary';
+    align-items: baseline;
+    column-gap: var(--space-s);
+    row-gap: 0.15rem;
+    padding: 0.85rem 0 0.95rem;
+    text-decoration: none;
+    transition: color 260ms var(--ease-out);
+  }
+
+  .contents .no {
+    grid-area: no;
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .contents .title {
+    grid-area: title;
+    font-size: var(--step-2);
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  .contents .leader {
+    grid-area: leader;
+    align-self: center;
+    height: 0;
+    border-bottom: 2px dotted currentColor;
+    transform-origin: left center;
+    translate: 0 0.35em;
+  }
+
+  .contents .stamp {
+    grid-area: stamp;
+    align-self: center;
+  }
+
+  .contents .summary {
+    grid-area: summary;
+    max-width: 52ch;
+    font-size: var(--step--1);
+    line-height: 1.5;
+  }
+
+  /* Signature: one entry in full ink, the rest print lighter. */
+  .contents ol:has(a:hover, a:focus-visible) a:not(:hover, :focus-visible) {
+    color: var(--ink-faint);
+  }
+
+  .contents a:hover .leader,
+  .contents a:focus-visible .leader {
+    animation: draw-leader 520ms var(--ease-out);
+  }
+
+  @keyframes draw-leader {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  /* ---------- Portrait ---------- */
+  /* The frontispiece fills the cover's height and bleeds off the right and bottom edges. */
+  .portrait {
+    grid-area: portrait;
+    align-self: stretch;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    min-height: 0;
+    margin: 0 calc(var(--gutter) * -1) 0 0;
+    container-type: size;
+    color: var(--ink);
+  }
+
+  /* As tall as the cover allows, never wider than its own column. */
+  .portrait canvas,
+  .portrait img {
+    flex: none;
+    height: min(100cqh, 100cqw * 578 / 405);
+    width: auto;
+    max-width: none;
+    aspect-ratio: 405 / 578;
+  }
+
+  /* ---------- Entries ---------- */
+  main {
+    background: var(--paper);
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--space-l);
+    row-gap: var(--space-l);
+    padding: var(--space-xl) var(--gutter) 0;
+  }
+
+  .entry-head {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: end;
+    column-gap: var(--space-m);
+    padding-bottom: 0.5rem;
+  }
+
+  .entry-no {
+    font-family: var(--display);
+    font-size: var(--step-4);
+    line-height: 0.85;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .entry-head h2 {
+    font-family: var(--display);
+    font-size: var(--step-5);
+    line-height: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+  }
+
+  .entry-head .stamp {
+    margin-bottom: 0.5rem;
+  }
+
+  .entry-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+  }
+
+  .lede {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    max-width: 38ch;
+  }
+
+  /* Entry in progress: the reference table carries it. */
+  .entry-progress .entry-body {
+    grid-column: 1;
+  }
+
+  .entry-progress > :global(.reference) {
+    grid-column: 2;
+  }
+
+  /* ---------- Note ---------- */
+  .note {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--space-l);
+    margin-top: var(--space-xl);
+    padding: var(--space-xl) var(--gutter);
+    background: var(--yellow);
+  }
+
+  .note h2 {
+    font-family: var(--display);
+    font-size: var(--step-4);
+    line-height: 0.9;
+    text-transform: uppercase;
+    max-width: 8ch;
+  }
+
+  .note-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    max-width: 36rem;
+    font-size: var(--step-1);
+    line-height: 1.55;
+  }
+
+  .note-body p:first-child::first-line {
+    font-weight: 650;
+  }
+
+  .signature {
+    margin-top: 0.5rem;
+    font-family: var(--display);
+    font-size: var(--step-3);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Narrow screens ---------- */
+  @media (max-width: 60rem) {
+    .cover-body {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas:
+        'name'
+        'portrait'
+        'tagline'
+        'contents';
+    }
+
+    .name {
+      font-size: 35vw;
+    }
+
+    .contents {
+      padding: var(--space-l) 0 var(--space-m);
+    }
+
+    .portrait {
+      justify-content: flex-end;
+      margin: -0.5rem calc(var(--gutter) * -1) 0 0;
+      container-type: normal;
+    }
+
+    .portrait canvas,
+    .portrait img {
+      width: min(68%, 24rem);
+      height: auto;
+    }
+
+    .entry,
+    .note {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .entry-progress .entry-body,
+    .entry-progress > :global(.reference) {
+      grid-column: 1;
+    }
+
+    .entry-head {
+      grid-template-columns: auto 1fr;
+      row-gap: var(--space-s);
+    }
+
+    .entry-head h2 {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      font-size: var(--step-4);
+    }
+
+    .entry-head .stamp {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      margin-bottom: 0;
+    }
+
+    .entry-no {
+      font-size: var(--step-3);
+    }
+
+    .note h2 {
+      margin-bottom: var(--space-m);
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .contents a {
+      grid-template-columns: 3.6rem 1fr auto;
+      grid-template-areas:
+        'no title stamp'
+        '. summary summary';
+    }
+
+    .contents .leader {
+      display: none;
+    }
+
+    .contents .title {
+      font-size: var(--step-1);
+    }
+
+  }
+</style>

@@ -1,0 +1,16 @@
+---
+import Document from '../../../layouts/Document.astro';
+import { hueDocs, hueBelongsTo } from '../../../data/hue-docs';
+// The terms are kept exactly as published; they are not edited here.
+import body from '../../../content/hue-of-year/terms.html?raw';
+---
+
+<Document
+  title="Terms of Service"
+  description="Terms of Service for Hue of Year, the evening mood diary for iPhone."
+  belongsTo={hueBelongsTo}
+  updated="April 17, 2026"
+  siblings={hueDocs}
+>
+  <Fragment set:html={body} />
+</Document>

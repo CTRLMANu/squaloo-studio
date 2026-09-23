@@ -1,0 +1,204 @@
+---
+import Base from '../../layouts/Base.astro';
+import EntryOpener from '../../components/EntryOpener.astro';
+import { entries } from '../../data/entries';
+import { hueDocs } from '../../data/hue-docs';
+
+const hue = entries.find((e) => e.slug === 'hue-of-year')!;
+const appStore = 'https://apps.apple.com/app/hue-of-year-mood-tracker/id6759992055';
+
+const features = [
+  ['Evening check-in', 'Log your mood, your energy and one win from the day. Optionally set one task for tomorrow.'],
+  ['A year in colour', 'Thriving is green, okay is amber, struggling is red. Day by day, the colours fill a grid of the whole year.'],
+  ['Prism', 'The forward-looking view, where you set tomorrow’s task.'],
+  ['Echo', 'The backward-looking view: mood by weekday, energy, task completion, and how you bounce back after a hard day.'],
+  ['Task follow-up', 'The next evening starts by asking whether you did it. If not, note why and carry it forward.'],
+  ['Widgets', 'Home and lock screen widgets show the year grid, today’s mood and today’s task.'],
+  ['Evening reminder', 'An optional daily nudge, 9 PM by default, skipped if you have already logged.'],
+];
+
+const docUpdated: Record<string, string> = {
+  '/hue-of-year/privacy/': 'April 17, 2026',
+  '/hue-of-year/terms/': 'April 17, 2026',
+};
+---
+
+<Base title={hue.title} description="Hue of Year is an evening mood diary for iPhone. Each day becomes a colour, and the year fills in. Your entries stay on your phone.">
+  <EntryOpener
+    entry={hue}
+    lede="A diary for the end of the day. Each evening you log how it went, your energy and one small win. Every day becomes a colour, and over months a year of moods takes shape on a single grid."
+    icon={{ src: '/img/hue-icon.webp', alt: 'Hue of Year app icon' }}
+    links={hueDocs}
+  >
+    <p class="actions">
+      <a class="button" href={appStore} rel="noopener">Get it on the App Store</a>
+    </p>
+    <figure class="plates frontispiece" slot="aside">
+      <img src="/img/hue-widgets.webp" alt="iPhone home screen with Hue of Year widgets showing April's colours, a 110-day streak and today's task" width="720" height="1471" />
+      <figcaption><span>Fig. 1</span> The month and today’s task on the home screen.</figcaption>
+    </figure>
+  </EntryOpener>
+
+  <main class="chapter">
+    <section class="block" aria-labelledby="glance-title">
+      <h2 id="glance-title" class="rule-under">At a glance</h2>
+      <dl class="facts">
+        <div><dt>Made for</dt><dd>iPhone. There is no Android version.</dd></div>
+        <div><dt>Status</dt><dd>Live on the App Store</dd></div>
+        <div><dt>Your entries</dt><dd>Stay on your phone. No account needed. Deleting the app deletes them.</dd></div>
+        <div><dt>Pro</dt><dd>An optional upgrade that unlocks extra features</dd></div>
+      </dl>
+    </section>
+
+    <section class="block" aria-labelledby="features-title">
+      <h2 id="features-title" class="rule-under">What it does</h2>
+      <dl class="facts features">
+        {
+          features.map(([term, text]) => (
+            <div>
+              <dt>{term}</dt>
+              <dd>{text}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="block" aria-labelledby="plates-title">
+      <h2 id="plates-title" class="rule-under">Plates</h2>
+      <div class="plates pair">
+        <figure>
+          <img src="/img/hue-checkin.webp" alt="Hue of Year check-in screen asking “How was your day?” with green, amber and red choices" width="720" height="1417" loading="lazy" />
+          <figcaption><span>Fig. 2</span> The evening check-in. One tap sets the day’s colour.</figcaption>
+        </figure>
+        <figure>
+          <img src="/img/hue-echo.webp" alt="Hue of Year Echo view with charts of mood and energy by weekday, mood stability and bounce-back pattern" width="720" height="1417" loading="lazy" />
+          <figcaption><span>Fig. 3</span> Echo: mood by weekday, stability, how you recover.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="docs-title">
+      <h2 id="docs-title" class="rule-under">Documents</h2>
+      <ol class="docs">
+        {
+          hueDocs.map((d) => (
+            <li>
+              <a href={d.href}>
+                <span class="doc-title">{d.text}</span>
+                <span class="leader" aria-hidden="true" />
+                <span class="doc-meta">{docUpdated[d.href] ? `Updated ${docUpdated[d.href]}` : 'Questions and contact'}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .frontispiece {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 22rem;
+    margin: 0 0 0 auto;
+    background: var(--paper);
+  }
+
+  .chapter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-xl) var(--space-l);
+    padding: var(--space-xl) var(--gutter);
+  }
+
+  .block h2 {
+    margin-bottom: var(--space-m);
+    padding-bottom: 0.4rem;
+    font-family: var(--display);
+    font-size: var(--step-3);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .docs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .docs li {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .docs li:first-child {
+    border-top: 1px solid var(--ink);
+  }
+
+  .docs a {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: var(--space-s);
+    padding: 0.85rem 0;
+    text-decoration: none;
+  }
+
+  .doc-title {
+    font-size: var(--step-1);
+    font-weight: 650;
+  }
+
+  .docs .leader {
+    border-bottom: 2px dotted currentColor;
+  }
+
+  .doc-meta {
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .docs a:hover .doc-title,
+  .docs a:focus-visible .doc-title {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.22em;
+  }
+
+  @media (max-width: 60rem) {
+    .chapter {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .frontispiece {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 34rem) {
+    .frontispiece {
+      max-width: 16rem;
+    }
+
+    .pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: visible;
+    }
+
+    .docs a {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
+
+    .docs .leader {
+      display: none;
+    }
+  }
+</style>

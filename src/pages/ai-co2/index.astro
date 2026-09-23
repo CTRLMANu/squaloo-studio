@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import EntryOpener from '../../components/EntryOpener.astro';
+import Co2Plan from '../../components/Co2Plan.astro';
+import { entries } from '../../data/entries';
+
+const co2 = entries.find((e) => e.slug === 'ai-co2')!;
+---
+
+<Base title={co2.title} description="A free, open-source tool in progress that estimates the CO₂ footprint of your AI use from the data exports you can already download.">
+  <EntryOpener
+    entry={co2}
+    lede="I used about 1.3 billion tokens over July and part of August, and wanted to know what that costs in CO₂. So I'm building a small, free tool that estimates it from the exports you can already download, without installing anything."
+  />
+
+  <main class="chapter">
+    <section aria-labelledby="plan-title">
+      <h2 id="plan-title" class="rule-under">The plan</h2>
+      <Co2Plan />
+    </section>
+
+    <section aria-labelledby="state-title">
+      <h2 id="state-title" class="rule-under">Where it stands</h2>
+      <dl class="facts">
+        <div><dt>Status</dt><dd>In progress. There is nothing to try yet.</dd></div>
+        <div><dt>Estimates</dt><dd>Always a range, never one number. Chat exports leave out hidden reasoning and tool calls, so those estimates run low, and the tool will say so.</dd></div>
+        <div><dt>Code</dt><dd>Will be public on GitHub under the MIT licence once it works.</dd></div>
+      </dl>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .chapter {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-xl) var(--space-l);
+    padding: var(--space-xl) var(--gutter);
+  }
+
+  h2 {
+    margin-bottom: var(--space-m);
+    padding-bottom: 0.4rem;
+    font-family: var(--display);
+    font-size: var(--step-3);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 60rem) {
+    .chapter {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
