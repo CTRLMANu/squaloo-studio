@@ -25,4 +25,12 @@ export const entries: Entry[] = [
     status: 'In progress',
     summary: 'The footprint of your AI use, estimated as an honest range, right in your browser.',
   },
+  {
+    no: '03',
+    slug: 'thesis-kit',
+    title: 'thesis-kit',
+    titleHtml: 'thesis-kit',
+    status: 'In progress',
+    summary: 'A Cursor workspace for writing a thesis from sources you checked yourself.',
+  },
 ];

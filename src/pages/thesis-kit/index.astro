@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import EntryOpener from '../../components/EntryOpener.astro';
+import ThesisPlan from '../../components/ThesisPlan.astro';
+import { entries } from '../../data/entries';
+
+const thesis = entries.find((e) => e.slug === 'thesis-kit')!;
+const repo = 'https://github.com/CTRLMANu/thesis-kit';
+const lede =
+  'A Cursor workspace for writing a thesis from sources you checked yourself. You clone it, open the folder, and it already knows the next step: the question, the papers you kept, then one section at a time.';
+---
+
+<Base
+  title={thesis.title}
+  description="thesis-kit is a public Cursor workspace in progress for writing a thesis from sources you checked yourself."
+>
+  <EntryOpener entry={thesis} lede={lede}>
+    <p class="actions">
+      <a href={repo} rel="noopener">See the repository</a>
+    </p>
+  </EntryOpener>
+
+  <main class="chapter">
+    <section aria-labelledby="plan-title">
+      <h2 id="plan-title" class="rule-under">The plan</h2>
+      <ThesisPlan />
+    </section>
+
+    <section aria-labelledby="state-title">
+      <h2 id="state-title" class="rule-under">Where it stands</h2>
+      <dl class="facts">
+        <div><dt>Status</dt><dd>In progress. The repository is public. The guide and the skills are not in it yet.</dd></div>
+        <div><dt>You write</dt><dd>The thesis. The kit drafts one section from the papers in the folder, and it does not invent a citation.</dd></div>
+        <div>
+          <dt>Code</dt>
+          <dd><a href={repo} rel="noopener">Public on GitHub</a> under the MIT licence.</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .chapter {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-xl) var(--space-l);
+    padding: var(--space-xl) var(--gutter);
+  }
+
+  h2 {
+    margin-bottom: var(--space-m);
+    padding-bottom: 0.4rem;
+    font-family: var(--display);
+    font-size: var(--step-3);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 60rem) {
+    .chapter {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

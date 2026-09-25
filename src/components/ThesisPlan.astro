@@ -1,0 +1,90 @@
+---
+// The thesis-kit plan, set as a reference table. Shared by the home page and the entry page.
+---
+
+<table class="reference">
+  <caption>What it will do</caption>
+  <tbody>
+    <tr>
+      <th scope="row"><span>Opens</span></th>
+      <td>You clone the repository and open that folder in Cursor</td>
+    </tr>
+    <tr>
+      <th scope="row"><span>Holds</span></th>
+      <td>question.md, memo.md, sources.md, outline.md, and an empty chapters folder</td>
+    </tr>
+    <tr>
+      <th scope="row"><span>Walks through</span></th>
+      <td>A five-step guide, plus skills for a research memo, one literature-review section, a paraphrase, citations, and supervisor comments</td>
+    </tr>
+    <tr>
+      <th scope="row"><span>Stays outside</span></th>
+      <td>Consensus, ResearchRabbit, Zotero, NotebookLM, and an OpenPaper exposé. You open the site, then paste what you keep</td>
+    </tr>
+    <tr>
+      <th scope="row"><span>Writes</span></th>
+      <td>One section from the papers in the folder. It marks anything unsure and stops</td>
+    </tr>
+    <tr>
+      <th scope="row"><span>Licence</span></th>
+      <td>Free and open source (MIT)</td>
+    </tr>
+  </tbody>
+</table>
+
+<style>
+  .reference {
+    align-self: start;
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 3px solid var(--ink);
+  }
+
+  .reference caption {
+    caption-side: top;
+    text-align: left;
+    padding-bottom: 0.5rem;
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .reference th,
+  .reference td {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--ink);
+    text-align: left;
+    vertical-align: baseline;
+  }
+
+  .reference th {
+    width: 10.5rem;
+    padding-right: var(--space-s);
+    font-weight: 400;
+  }
+
+  .reference th span {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4em;
+    font-size: var(--step--1);
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 0.15em;
+  }
+
+  .reference th span::after {
+    content: '';
+    flex: 1;
+    min-width: 1rem;
+    border-bottom: 2px dotted currentColor;
+  }
+
+  @media (max-width: 34rem) {
+    .reference th {
+      width: 7.5rem;
+    }
+  }
+</style>
