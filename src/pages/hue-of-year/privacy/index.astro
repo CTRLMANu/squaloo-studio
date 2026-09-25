@@ -1,7 +1,7 @@
 ---
 import Document from '../../../layouts/Document.astro';
 import { hueDocs, hueBelongsTo } from '../../../data/hue-docs';
-// The policy text is kept exactly as published; it is not edited here.
+// Policy text as published, except the support links, which use the clean URL.
 import body from '../../../content/hue-of-year/privacy.html?raw';
 ---
 
@@ -9,7 +9,7 @@ import body from '../../../content/hue-of-year/privacy.html?raw';
   title="Privacy Policy"
   description="Privacy Policy for Hue of Year, the evening mood diary for iPhone."
   belongsTo={hueBelongsTo}
-  updated="April 17, 2026"
+  updated="September 25, 2026"
   siblings={hueDocs}
 >
   <Fragment set:html={body} />
