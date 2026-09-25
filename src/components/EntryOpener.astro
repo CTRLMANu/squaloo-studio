@@ -2,6 +2,7 @@
 // A chapter opener on the cover yellow: entry number, title, status, lede and actions.
 // The `aside` slot holds the frontispiece (a plate); the default slot holds actions.
 import RunningHead from './RunningHead.astro';
+import { SITE } from '../site';
 import type { Entry } from '../data/entries';
 
 interface Props {
@@ -16,7 +17,7 @@ const hasAside = Astro.slots.has('aside');
 ---
 
 <header class="opener" data-aside={hasAside ? '' : undefined}>
-  <RunningHead label="An almanac of side projects" links={[{ href: '/#contents', text: 'Contents' }, ...links]} />
+  <RunningHead label={SITE.name} links={[{ href: '/#contents', text: 'Contents' }, ...links]} />
 
   <div class="opener-body">
     <div class="opener-text">

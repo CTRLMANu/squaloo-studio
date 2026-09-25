@@ -11,8 +11,15 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const pageTitle = title ? `${title} · ${SITE.author}` : SITE.author;
+const pageTitle = title ? `${title} · ${SITE.name}` : SITE.name;
 const canonical = new URL(Astro.url.pathname, SITE.url);
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  description,
+};
 ---
 
 <!doctype html>
@@ -25,10 +32,12 @@ const canonical = new URL(Astro.url.pathname, SITE.url);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#f3c019" />
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
+    {!title && <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />}
     <script is:inline>
       // The old site used hash routes (squaloo.studio/#/hue-of-year/support); send them to the real page.
       if (location.hash.startsWith('#/')) location.replace(location.hash.slice(1).replace(/\/?$/, '/'));
@@ -57,7 +66,7 @@ const canonical = new URL(Astro.url.pathname, SITE.url);
         <div>
           <h2 class="label">Colophon</h2>
           <p>
-            Compiled by {SITE.author}. Set in League Gothic and Libre Franklin. The portrait is screened in one
+            {SITE.name}. Compiled by {SITE.author}. Set in League Gothic and Libre Franklin. The portrait is screened in one
             ink, live in your browser. Built with Astro, hosted on GitHub Pages.
           </p>
         </div>

@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import RunningHead from '../components/RunningHead.astro';
+import { SITE } from '../site';
 ---
 
 <Base title="Page not found" description="This page is not in the almanac.">
   <main class="missing">
-    <RunningHead label="An almanac of side projects" links={[{ href: '/#contents', text: 'Contents' }]} />
+    <RunningHead label={SITE.name} links={[{ href: '/#contents', text: 'Contents' }]} />
     <h1>Not in the almanac</h1>
     <p>There is no page at this address. <a href="/#contents">Back to the contents</a>.</p>
   </main>
