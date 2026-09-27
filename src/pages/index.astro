@@ -16,6 +16,7 @@ const [hue, co2, thesis] = entries;
       links={[
         { href: '#contents', text: 'Contents' },
         { href: '#note', text: 'Note' },
+        { href: `mailto:${SITE.email}`, text: 'Contact' },
       ]}
     />
 
@@ -125,15 +126,18 @@ const [hue, co2, thesis] = entries;
       <header class="entry-head rule-under">
         <p class="entry-no">No. {thesis.no}</p>
         <h2 id="thesis-title" set:html={thesis.titleHtml} />
-        <span class="stamp" data-state="progress">{thesis.status}</span>
+        <span class="stamp" data-state="live">{thesis.status}</span>
       </header>
 
       <div class="entry-body">
         <p class="lede">
-          A Cursor workspace for writing a thesis from sources you checked yourself. You clone it, open the folder, and
-          it already knows the next step: the question, the papers you kept, then one section at a time.
+          A Cursor workspace for writing a thesis from sources you checked yourself. You open the folder, and it finds
+          papers, checks them, and drafts one section at a time. It only cites papers you have opened and confirmed.
         </p>
-        <p class="actions"><a href={`/${thesis.slug}/`}>Read the full entry</a></p>
+        <p class="actions">
+          <a class="button" href={thesis.url} rel="noopener">Get it on GitHub</a>
+          <a href={`/${thesis.slug}/`}>Read the full entry</a>
+        </p>
       </div>
 
       <ThesisPlan />
@@ -148,8 +152,8 @@ const [hue, co2, thesis] = entries;
           otherwise miss, like a year of moods or the footprint of their AI use.
         </p>
         <p>
-          That second one started with my own: 1.3 billion tokens over July and part of August. The third is a workspace
-          for writing a thesis from sources you checked yourself. Three entries so far. More as they ship.
+          That second one started with my own: 1.3 billion tokens over July and part of August. The third, thesis-kit,
+          is a workspace for writing a thesis from sources you checked yourself. Three entries so far. More as they ship.
         </p>
         <p class="signature">{SITE.author}</p>
       </div>

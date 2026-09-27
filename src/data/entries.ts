@@ -6,6 +6,8 @@ export type Entry = {
   titleHtml: string;
   status: 'Live' | 'In progress';
   summary: string;
+  /** Public home for the project, when it has one. */
+  url?: string;
 };
 
 export const entries: Entry[] = [
@@ -30,7 +32,8 @@ export const entries: Entry[] = [
     slug: 'thesis-kit',
     title: 'thesis-kit',
     titleHtml: 'thesis-kit',
-    status: 'In progress',
+    status: 'Live',
     summary: 'A Cursor workspace for writing a thesis from sources you checked yourself.',
+    url: 'https://github.com/CTRLMANu/thesis-kit',
   },
 ];

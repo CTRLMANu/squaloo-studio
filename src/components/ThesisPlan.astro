@@ -1,29 +1,34 @@
 ---
-// The thesis-kit plan, set as a reference table. Shared by the home page and the entry page.
+// What thesis-kit does, set as a reference table. Shared by the home page and the entry page.
+interface Props {
+  /** Home shows this above the table. The entry page uses its own heading instead. */
+  caption?: string;
+}
+const { caption = 'What it does' } = Astro.props;
 ---
 
 <table class="reference">
-  <caption>What it will do</caption>
+  {caption && <caption>{caption}</caption>}
   <tbody>
     <tr>
       <th scope="row"><span>Opens</span></th>
-      <td>You clone the repository and open that folder in Cursor</td>
+      <td>You clone the repository and open the folder in Cursor. No coding.</td>
     </tr>
     <tr>
-      <th scope="row"><span>Holds</span></th>
-      <td>question.md, memo.md, sources.md, outline.md, and an empty chapters folder</td>
+      <th scope="row"><span>Checks</span></th>
+      <td>Every paper against Crossref and DataCite. It can be cited only after you confirm you read it.</td>
     </tr>
     <tr>
-      <th scope="row"><span>Walks through</span></th>
-      <td>A five-step guide, plus skills for a research memo, one literature-review section, a paraphrase, citations, and supervisor comments</td>
+      <th scope="row"><span>Drafts</span></th>
+      <td>One section at a time, from those papers. Anything it cannot back up is marked [CHECK].</td>
     </tr>
     <tr>
-      <th scope="row"><span>Stays outside</span></th>
-      <td>Consensus, ResearchRabbit, Zotero, NotebookLM, and an OpenPaper exposé. You open the site, then paste what you keep</td>
+      <th scope="row"><span>Hands off</span></th>
+      <td>A Word file you keep editing, then supervisor comments brought back in as a list.</td>
     </tr>
     <tr>
-      <th scope="row"><span>Writes</span></th>
-      <td>One section from the papers in the folder. It marks anything unsure and stops</td>
+      <th scope="row"><span>Records</span></th>
+      <td>An optional log of what the AI did, which becomes your AI declaration.</td>
     </tr>
     <tr>
       <th scope="row"><span>Licence</span></th>
